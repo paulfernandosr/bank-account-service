@@ -1,0 +1,34 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/bankAccount
+  webflux:
+    base-path: /bank-accounts
+
+controller:
+  checking-account:
+    base-path: /checking
+    method:
+      register-personal: /personal
+      register-business: /business
+  fixed-term-account:
+    base-path: /fixed-term
+  saving-account:
+    base-path: /saving
+  method:
+    getAll:
+    getById: /{id}
+    register:
+    updateById: /{id}
+    deleteById: /{id}
+  path-variable:
+    id: id
+
+customer-service:
+  base-url: http://localhost:8081/customers
+  method:
+    get-personal-customer-by-id: /personal/{id}
+    get-business-customer-by-id: /business/{id}
