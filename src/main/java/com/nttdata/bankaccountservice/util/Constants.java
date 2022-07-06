@@ -57,7 +57,7 @@ public class Constants {
     public static final String REGISTER_BUSINESS_METHOD = "${controller.checking-account.method.register-business}";
 
     // Path variables
-    public static final String PATH_ID_VARIABLE = "${controller.path-variable.id}";
+    public static final String ID_PATH_VARIABLE = "${controller.path-variable.id}";
 
     // Customer service
     public static final String CUSTOMER_SERVICE_BASE_URL = "${customer-service.base-url}";

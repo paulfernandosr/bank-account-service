@@ -22,7 +22,7 @@ controller:
   fixed-term-account:
     base-path: /fixed-term
   saving-account:
-    base-path: /saving
+    base-path: /savings
   method:
     getAll:
     getById: /{id}

@@ -33,7 +33,7 @@ public class CheckingAccountController {
     }
 
     @GetMapping(Constants.GET_BY_ID_METHOD)
-    public Mono<ResponseEntity<CheckingAccountDto>> getById(@PathVariable(Constants.PATH_ID_VARIABLE) String id) {
+    public Mono<ResponseEntity<CheckingAccountDto>> getById(@PathVariable(Constants.ID_PATH_VARIABLE) String id) {
         return service.getById(id).map(account -> ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(account));
@@ -58,7 +58,7 @@ public class CheckingAccountController {
     }
 
     @PutMapping(Constants.UPDATE_BY_ID_METHOD)
-    public Mono<ResponseEntity<CheckingAccountDto>> updateById(@PathVariable(Constants.PATH_ID_VARIABLE) String id, @RequestBody CheckingAccountDto account) {
+    public Mono<ResponseEntity<CheckingAccountDto>> updateById(@PathVariable(Constants.ID_PATH_VARIABLE) String id, @RequestBody CheckingAccountDto account) {
         return validator.validate(account)
                 .flatMap(validatedAccount -> service.updateById(id, account)
                         .map(updatedAccount -> ResponseEntity.ok()
@@ -67,7 +67,7 @@ public class CheckingAccountController {
     }
 
     @DeleteMapping(Constants.DELETE_BY_ID_METHOD)
-    public Mono<ResponseEntity<Void>> deleteById(@PathVariable(Constants.PATH_ID_VARIABLE) String id) {
+    public Mono<ResponseEntity<Void>> deleteById(@PathVariable(Constants.ID_PATH_VARIABLE) String id) {
         return service.deleteById(id).thenReturn(new ResponseEntity<>(HttpStatus.OK));
     }
 
