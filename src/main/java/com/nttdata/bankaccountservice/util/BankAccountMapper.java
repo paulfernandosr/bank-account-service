@@ -3,7 +3,7 @@ package com.nttdata.bankaccountservice.util;
 import com.nttdata.bankaccountservice.dto.*;
 import com.nttdata.bankaccountservice.model.CheckingAccount;
 import com.nttdata.bankaccountservice.model.FixedTermAccount;
-import com.nttdata.bankaccountservice.model.SavingAccount;
+import com.nttdata.bankaccountservice.model.SavingsAccount;
 
 public class BankAccountMapper {
 
@@ -94,8 +94,8 @@ public class BankAccountMapper {
                 .build();
     }
 
-    public static SavingAccount toModel(SavingAccountDto bankAccountDto) {
-        return SavingAccount.builder()
+    public static SavingsAccount toModel(SavingsAccountDto bankAccountDto) {
+        return SavingsAccount.builder()
                 .id(bankAccountDto.getId())
                 .accountNumber(bankAccountDto.getAccountNumber())
                 .cci(bankAccountDto.getCci())
@@ -104,8 +104,8 @@ public class BankAccountMapper {
                 .build();
     }
 
-    public static SavingAccountDto toDto(SavingAccount bankAccount) {
-        return SavingAccountDto.builder()
+    public static SavingsAccountDto toDto(SavingsAccount bankAccount) {
+        return SavingsAccountDto.builder()
                 .id(bankAccount.getId())
                 .accountNumber(bankAccount.getAccountNumber())
                 .cci(bankAccount.getCci())

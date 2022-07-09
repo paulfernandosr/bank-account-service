@@ -1,7 +1,7 @@
 package com.nttdata.bankaccountservice.controller;
 
-import com.nttdata.bankaccountservice.dto.SavingAccountDto;
-import com.nttdata.bankaccountservice.service.ISavingAccountService;
+import com.nttdata.bankaccountservice.dto.SavingsAccountDto;
+import com.nttdata.bankaccountservice.service.ISavingsAccountService;
 import com.nttdata.bankaccountservice.util.Constants;
 import com.nttdata.bankaccountservice.util.RequestValidator;
 import lombok.RequiredArgsConstructor;
@@ -17,28 +17,28 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(Constants.SAVING_ACCOUNT_CONTROLLER)
-public class SavingAccountController {
+@RequestMapping(Constants.SAVINGS_ACCOUNT_CONTROLLER)
+public class SavingsAccountController {
 
-    private final ISavingAccountService service;
+    private final ISavingsAccountService service;
     private final RequestValidator validator;
 
     @GetMapping(Constants.GET_ALL_METHOD)
-    public Mono<ResponseEntity<Flux<SavingAccountDto>>> getAll() {
+    public Mono<ResponseEntity<Flux<SavingsAccountDto>>> getAll() {
         return Mono.just(ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(service.getAll()));
     }
 
     @GetMapping(Constants.GET_BY_ID_METHOD)
-    public Mono<ResponseEntity<SavingAccountDto>> getById(@PathVariable(Constants.ID_PATH_VARIABLE) String id) {
+    public Mono<ResponseEntity<SavingsAccountDto>> getById(@PathVariable(Constants.ID_PATH_VARIABLE) String id) {
         return service.getById(id).map(account -> ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(account));
     }
 
     @PostMapping(Constants.REGISTER_METHOD)
-    public Mono<ResponseEntity<SavingAccountDto>> register(@RequestBody SavingAccountDto account, final ServerHttpRequest request) {
+    public Mono<ResponseEntity<SavingsAccountDto>> register(@RequestBody SavingsAccountDto account, final ServerHttpRequest request) {
         return validator.validate(account)
                 .flatMap(validatedAccount -> service.register(account)
                         .map(registeredAccount -> ResponseEntity.created(URI.create(request.getURI() + Constants.SLASH + registeredAccount.getId()))
@@ -47,7 +47,7 @@ public class SavingAccountController {
     }
 
     @PutMapping(Constants.UPDATE_BY_ID_METHOD)
-    public Mono<ResponseEntity<SavingAccountDto>> updateById(@PathVariable(Constants.ID_PATH_VARIABLE) String id, @RequestBody SavingAccountDto account) {
+    public Mono<ResponseEntity<SavingsAccountDto>> updateById(@PathVariable(Constants.ID_PATH_VARIABLE) String id, @RequestBody SavingsAccountDto account) {
         return validator.validate(account)
                 .flatMap(validatedAccount -> service.updateById(id, account)
                         .map(updatedAccount -> ResponseEntity.ok()

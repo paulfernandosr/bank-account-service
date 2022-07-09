@@ -40,12 +40,12 @@ public class Constants {
     // Collections
     public static final String CHECKING_ACCOUNTS_COLLECTION = "checkingAccounts";
     public static final String FIXED_TERM_ACCOUNTS_COLLECTION = "fixedTermAccounts";
-    public static final String SAVING_ACCOUNTS_COLLECTION = "savingAccounts";
+    public static final String SAVINGS_ACCOUNTS_COLLECTION = "savingsAccounts";
 
     // Controller paths
     public static final String CHECKING_ACCOUNT_CONTROLLER = "${controller.checking-account.base-path}";
     public static final String FIXED_TERM_ACCOUNT_CONTROLLER = "${controller.fixed-term-account.base-path}";
-    public static final String SAVING_ACCOUNT_CONTROLLER = "${controller.saving-account.base-path}";
+    public static final String SAVINGS_ACCOUNT_CONTROLLER = "${controller.saving-account.base-path}";
 
     // Method paths
     public static final String GET_ALL_METHOD = "${controller.method.get-all}";

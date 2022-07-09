@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SavingAccountDto {
+public class SavingsAccountDto {
 
     private final String id;
 

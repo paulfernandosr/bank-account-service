@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Builder(toBuilder = true)
-@Document(collection = Constants.SAVING_ACCOUNTS_COLLECTION)
-public class SavingAccount {
+@Document(collection = Constants.SAVINGS_ACCOUNTS_COLLECTION)
+public class SavingsAccount {
 
     @Id
     private final String id;
