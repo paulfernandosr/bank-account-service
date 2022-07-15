@@ -10,10 +10,13 @@ public class PropertiesConfig {
     @Value(Constants.CUSTOMER_SERVICE_BASE_URL)
     public String customerServiceBaseUrl;
 
-    @Value(Constants.GET_PERSONAL_CUSTOMER_BY_ID_METHOD)
-    public String getPersonalCustomerByIdMethod;
+    @Value(Constants.GET_CUSTOMER_BY_ID_METHOD)
+    public String getCustomerByIdMethod;
 
-    @Value(Constants.GET_BUSINESS_CUSTOMER_BY_ID_METHOD)
-    public String getBusinessCustomerByIdMethod;
+    @Value(Constants.CREDIT_SERVICE_BASE_URL)
+    public String creditServiceBaseUrl;
+
+    @Value(Constants.GET_CREDITS_BY_CUSTOMER_ID_METHOD)
+    public String getCreditsByCustomerIdMethod;
 
 }

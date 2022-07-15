@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SavingsAccountDto {
+public class BankAccountDto {
 
     private final String id;
 
@@ -23,7 +23,14 @@ public class SavingsAccountDto {
     @NotNull(message = Constants.NOT_NULL)
     private final Double balance;
 
+    private final String type;
+
     @NotNull(message = Constants.NOT_NULL)
-    private final String personalCustomerId;
+    private final String customerId;
+
+    private final String maintenanceFee;
+    private final Integer monthlyMovementLimit;
+    private final Double monthlyMinimumBalance;
+    private final Integer transactionLimit;
 
 }

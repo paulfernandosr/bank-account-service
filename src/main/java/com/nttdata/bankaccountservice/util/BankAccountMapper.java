@@ -1,9 +1,10 @@
 package com.nttdata.bankaccountservice.util;
 
 import com.nttdata.bankaccountservice.dto.*;
-import com.nttdata.bankaccountservice.model.CheckingAccount;
-import com.nttdata.bankaccountservice.model.FixedTermAccount;
-import com.nttdata.bankaccountservice.model.SavingsAccount;
+import com.nttdata.bankaccountservice.dto.request.CheckingAccountDto;
+import com.nttdata.bankaccountservice.dto.request.FixedTermAccountDto;
+import com.nttdata.bankaccountservice.dto.request.SavingsAccountDto;
+import com.nttdata.bankaccountservice.model.BankAccount;
 
 public class BankAccountMapper {
 
@@ -11,106 +12,97 @@ public class BankAccountMapper {
         throw new IllegalStateException(Constants.UTILITY_CLASS);
     }
 
-    public static CheckingAccount toModel(CheckingAccountDto bankAccountDto) {
-        return CheckingAccount.builder()
+    public static BankAccount toBankAccount(BankAccountDto bankAccountDto) {
+        return BankAccount.builder()
                 .id(bankAccountDto.getId())
                 .accountNumber(bankAccountDto.getAccountNumber())
                 .cci(bankAccountDto.getCci())
                 .balance(bankAccountDto.getBalance())
-                .personalCustomerId(bankAccountDto.getPersonalCustomerId())
-                .businessCustomerId(bankAccountDto.getBusinessCustomerId())
+                .type(bankAccountDto.getType())
+                .customerId(bankAccountDto.getCustomerId())
+                .maintenanceFee(bankAccountDto.getMaintenanceFee())
+                .monthlyMovementLimit(bankAccountDto.getMonthlyMovementLimit())
+                .monthlyMinimumBalance(bankAccountDto.getMonthlyMinimumBalance())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
                 .build();
     }
 
-    public static CheckingAccountDto toDto(CheckingAccount bankAccountDto) {
-        return CheckingAccountDto.builder()
-                .id(bankAccountDto.getId())
+    public static BankAccountDto toBankAccountDto(SavingsAccountDto bankAccountDto) {
+        return BankAccountDto.builder()
                 .accountNumber(bankAccountDto.getAccountNumber())
                 .cci(bankAccountDto.getCci())
                 .balance(bankAccountDto.getBalance())
-                .personalCustomerId(bankAccountDto.getPersonalCustomerId())
-                .businessCustomerId(bankAccountDto.getBusinessCustomerId())
+                .customerId(bankAccountDto.getCustomerId())
+                .monthlyMovementLimit(bankAccountDto.getMonthlyMovementLimit())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
                 .build();
     }
 
-
-    public static CheckingAccount toModel(PersonalCheckingAccountDto bankAccountDto) {
-        return CheckingAccount.builder()
-                .id(bankAccountDto.getId())
+    public static BankAccountDto toBankAccountDto(FixedTermAccountDto bankAccountDto) {
+        return BankAccountDto.builder()
                 .accountNumber(bankAccountDto.getAccountNumber())
                 .cci(bankAccountDto.getCci())
                 .balance(bankAccountDto.getBalance())
-                .personalCustomerId(bankAccountDto.getPersonalCustomerId())
+                .customerId(bankAccountDto.getCustomerId())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
                 .build();
     }
 
-    public static CheckingAccount toModel(BusinessCheckingAccountDto bankAccountDto) {
-        return CheckingAccount.builder()
-                .id(bankAccountDto.getId())
+    public static BankAccountDto toBankAccountDto(CheckingAccountDto bankAccountDto) {
+        return BankAccountDto.builder()
                 .accountNumber(bankAccountDto.getAccountNumber())
                 .cci(bankAccountDto.getCci())
                 .balance(bankAccountDto.getBalance())
-                .businessCustomerId(bankAccountDto.getBusinessCustomerId())
+                .customerId(bankAccountDto.getCustomerId())
+                .maintenanceFee(bankAccountDto.getMaintenanceFee())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
                 .build();
     }
 
-    public static PersonalCheckingAccountDto toPersonalDto(CheckingAccount bankAccount) {
-        return PersonalCheckingAccountDto.builder()
+    public static BankAccount toBankAccount(SavingsAccountDto bankAccountDto) {
+        return BankAccount.builder()
+                .accountNumber(bankAccountDto.getAccountNumber())
+                .cci(bankAccountDto.getCci())
+                .balance(bankAccountDto.getBalance())
+                .customerId(bankAccountDto.getCustomerId())
+                .monthlyMovementLimit(bankAccountDto.getMonthlyMovementLimit())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
+                .build();
+    }
+
+    public static BankAccount toBankAccount(FixedTermAccountDto bankAccountDto) {
+        return BankAccount.builder()
+                .accountNumber(bankAccountDto.getAccountNumber())
+                .cci(bankAccountDto.getCci())
+                .balance(bankAccountDto.getBalance())
+                .customerId(bankAccountDto.getCustomerId())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
+                .build();
+    }
+
+    public static BankAccount toBankAccount(CheckingAccountDto bankAccountDto) {
+        return BankAccount.builder()
+                .accountNumber(bankAccountDto.getAccountNumber())
+                .cci(bankAccountDto.getCci())
+                .balance(bankAccountDto.getBalance())
+                .customerId(bankAccountDto.getCustomerId())
+                .maintenanceFee(bankAccountDto.getMaintenanceFee())
+                .transactionLimit(bankAccountDto.getTransactionLimit())
+                .build();
+    }
+
+    public static BankAccountDto toBankAccountDto(BankAccount bankAccount) {
+        return BankAccountDto.builder()
                 .id(bankAccount.getId())
                 .accountNumber(bankAccount.getAccountNumber())
                 .cci(bankAccount.getCci())
                 .balance(bankAccount.getBalance())
-                .personalCustomerId(bankAccount.getPersonalCustomerId())
-                .build();
-    }
-
-    public static BusinessCheckingAccountDto toBusinessDto(CheckingAccount bankAccount) {
-        return BusinessCheckingAccountDto.builder()
-                .id(bankAccount.getId())
-                .accountNumber(bankAccount.getAccountNumber())
-                .cci(bankAccount.getCci())
-                .balance(bankAccount.getBalance())
-                .businessCustomerId(bankAccount.getBusinessCustomerId())
-                .build();
-    }
-
-    public static FixedTermAccount toModel(FixedTermAccountDto bankAccountDto) {
-        return FixedTermAccount.builder()
-                .id(bankAccountDto.getId())
-                .accountNumber(bankAccountDto.getAccountNumber())
-                .cci(bankAccountDto.getCci())
-                .balance(bankAccountDto.getBalance())
-                .personalCustomerId(bankAccountDto.getPersonalCustomerId())
-                .build();
-    }
-
-    public static FixedTermAccountDto toDto(FixedTermAccount bankAccount) {
-        return FixedTermAccountDto.builder()
-                .id(bankAccount.getId())
-                .accountNumber(bankAccount.getAccountNumber())
-                .cci(bankAccount.getCci())
-                .balance(bankAccount.getBalance())
-                .personalCustomerId(bankAccount.getPersonalCustomerId())
-                .build();
-    }
-
-    public static SavingsAccount toModel(SavingsAccountDto bankAccountDto) {
-        return SavingsAccount.builder()
-                .id(bankAccountDto.getId())
-                .accountNumber(bankAccountDto.getAccountNumber())
-                .cci(bankAccountDto.getCci())
-                .balance(bankAccountDto.getBalance())
-                .personalCustomerId(bankAccountDto.getPersonalCustomerId())
-                .build();
-    }
-
-    public static SavingsAccountDto toDto(SavingsAccount bankAccount) {
-        return SavingsAccountDto.builder()
-                .id(bankAccount.getId())
-                .accountNumber(bankAccount.getAccountNumber())
-                .cci(bankAccount.getCci())
-                .balance(bankAccount.getBalance())
-                .personalCustomerId(bankAccount.getPersonalCustomerId())
+                .type(bankAccount.getType())
+                .customerId(bankAccount.getCustomerId())
+                .maintenanceFee(bankAccount.getMaintenanceFee())
+                .monthlyMovementLimit(bankAccount.getMonthlyMovementLimit())
+                .monthlyMinimumBalance(bankAccount.getMonthlyMinimumBalance())
+                .transactionLimit(bankAccount.getTransactionLimit())
                 .build();
     }
 

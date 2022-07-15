@@ -1,5 +1,6 @@
 package com.nttdata.bankaccountservice.exception;
 
+import com.nttdata.bankaccountservice.util.Constants;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -33,19 +34,9 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
 
     private Mono<ServerResponse> renderErrorResponse(final ServerRequest request) {
         final Map<String, Object> errorPropertiesMap = getErrorAttributes(request, ErrorAttributeOptions.defaults());
-        Integer statusCode = (Integer) errorPropertiesMap.get("status");
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
-        switch (statusCode) {
-            case 400:
-                status = HttpStatus.BAD_REQUEST;
-                break;
-            case 404:
-                status = HttpStatus.NOT_FOUND;
-                break;
-            default:
-                break;
-        }
+        HttpStatus status = HttpStatus.resolve((Integer) errorPropertiesMap.get(Constants.STATUS));
+        if (status == null) status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         return ServerResponse.status(status)
                 .contentType(MediaType.APPLICATION_JSON)
