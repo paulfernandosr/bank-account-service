@@ -2,9 +2,9 @@ package com.nttdata.bankaccountservice.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class DuplicateBankAccountException extends DomainException {
+public class DuplicateEntityException extends DomainException {
 
-    public DuplicateBankAccountException(String message) {
+    public DuplicateEntityException(String message) {
         super(HttpStatus.BAD_REQUEST, message);
     }
 

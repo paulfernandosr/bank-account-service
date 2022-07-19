@@ -1,9 +1,9 @@
 package com.nttdata.bankaccountservice.service;
 
 import com.nttdata.bankaccountservice.dto.BankAccountDto;
-import com.nttdata.bankaccountservice.dto.request.CheckingAccountDto;
-import com.nttdata.bankaccountservice.dto.request.FixedTermAccountDto;
-import com.nttdata.bankaccountservice.dto.request.SavingsAccountDto;
+import com.nttdata.bankaccountservice.dto.BankAccountReport;
+import com.nttdata.bankaccountservice.dto.DebitCardDto;
+import com.nttdata.bankaccountservice.dto.request.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -30,5 +30,9 @@ public interface IBankAccountService {
     Mono<BankAccountDto> updateById(String id, BankAccountDto bankAccountDto);
 
     Mono<Void> deleteById(String id);
+
+    Mono<BankAccountDto> generateReport(GenerateReportDto generateReportDto);
+
+    Mono<DebitCardDto> associateDebitCard(AssociateDebitCardDto associateDebitCardDto);
 
 }

@@ -1,8 +1,10 @@
 package com.nttdata.bankaccountservice.controller;
 
 import com.nttdata.bankaccountservice.dto.BankAccountDto;
+import com.nttdata.bankaccountservice.dto.BankAccountReport;
 import com.nttdata.bankaccountservice.dto.request.CheckingAccountDto;
 import com.nttdata.bankaccountservice.dto.request.FixedTermAccountDto;
+import com.nttdata.bankaccountservice.dto.request.GenerateReportDto;
 import com.nttdata.bankaccountservice.dto.request.SavingsAccountDto;
 import com.nttdata.bankaccountservice.service.IBankAccountService;
 import com.nttdata.bankaccountservice.util.Constants;
@@ -45,6 +47,13 @@ public class BankAccountController {
         return service.getById(id).map(bankAccount -> ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(bankAccount));
+    }
+
+    @GetMapping(Constants.GENERATE_REPORT)
+    public Mono<ResponseEntity<BankAccountDto>> generateReport(@RequestBody GenerateReportDto generateReport) {
+        return service.generateReport(generateReport).map(credit -> ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(credit));
     }
 
     @PostMapping(Constants.REGISTER_PERSONAL_SAVINGS_ACCOUNT_METHOD)

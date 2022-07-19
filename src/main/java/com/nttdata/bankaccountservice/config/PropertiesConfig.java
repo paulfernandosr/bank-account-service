@@ -19,4 +19,10 @@ public class PropertiesConfig {
     @Value(Constants.GET_CREDITS_BY_CUSTOMER_ID_METHOD)
     public String getCreditsByCustomerIdMethod;
 
+    @Value(Constants.MOVEMENT_SERVICE_BASE_URL)
+    public String movementServiceBaseUrl;
+
+    @Value(Constants.GET_MOVEMENTS_BY_BANK_ACCOUNT_ID_METHOD)
+    public String getMovementsByBankAccountIdMethod;
+
 }
