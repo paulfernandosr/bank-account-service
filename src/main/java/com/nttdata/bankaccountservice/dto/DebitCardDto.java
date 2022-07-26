@@ -31,4 +31,6 @@ public class DebitCardDto {
     @NotNull(message = Constants.NOT_NULL)
     private final List<String> secondaryAccountIds;
 
+    private final String walletId;
+
 }

@@ -1,9 +1,10 @@
 package com.nttdata.bankaccountservice.service.impl;
 
+import com.nttdata.bankaccountservice.dto.BankAccountDto;
 import com.nttdata.bankaccountservice.dto.DebitCardDto;
+import com.nttdata.bankaccountservice.dto.request.AssociateAccountDto;
 import com.nttdata.bankaccountservice.exception.DuplicateEntityException;
 import com.nttdata.bankaccountservice.exception.EntityNotFoundException;
-import com.nttdata.bankaccountservice.model.DebitCard;
 import com.nttdata.bankaccountservice.repo.IDebitCardRepo;
 import com.nttdata.bankaccountservice.service.IBankAccountService;
 import com.nttdata.bankaccountservice.service.IDebitCardService;
@@ -13,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -66,6 +70,22 @@ public class DebitCardServiceImpl implements IDebitCardService {
     @Override
     public Mono<Void> deleteById(String id) {
         return getById(id).flatMap(debitCard -> repo.deleteById(id));
+    }
+
+    @Override
+    public Mono<DebitCardDto> associateAccount(String id, AssociateAccountDto associateAccountDto) {
+        return Mono.zip(bankAccountService.getById(associateAccountDto.getBankAccountId()),
+                        this.getById(id))
+                .map(this::addSecondaryAccount)
+                .flatMap(modifiedDebitCard -> this.updateById(modifiedDebitCard.getId(), modifiedDebitCard));
+    }
+
+    private DebitCardDto addSecondaryAccount(Tuple2<BankAccountDto, DebitCardDto> tuple) {
+        String accountId = tuple.getT1().getId();
+        DebitCardDto debitCard = tuple.getT2();
+        List<String> secondaryAccountIds = debitCard.getSecondaryAccountIds();
+        secondaryAccountIds.add(accountId);
+        return debitCard.toBuilder().secondaryAccountIds(secondaryAccountIds).build();
     }
 
 }

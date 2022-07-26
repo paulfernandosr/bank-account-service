@@ -17,6 +17,7 @@ public class DebitCardMapper {
                 .expirationDate(debitCardDto.getExpirationDate())
                 .mainAccountId(debitCardDto.getMainAccountId())
                 .secondaryAccountIds(debitCardDto.getSecondaryAccountIds())
+                .walletId(debitCardDto.getWalletId())
                 .build();
     }
 
@@ -28,6 +29,7 @@ public class DebitCardMapper {
                 .expirationDate(debitCard.getExpirationDate())
                 .mainAccountId(debitCard.getMainAccountId())
                 .secondaryAccountIds(debitCard.getSecondaryAccountIds())
+                .walletId(debitCard.getWalletId())
                 .build();
     }
 

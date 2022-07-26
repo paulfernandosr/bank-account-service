@@ -54,12 +54,14 @@ public class Constants {
     public static final String GET_BY_CUSTOMER_ID_METHOD = "/customers/{" + CUSTOMER_ID + "}";
     public static final String UPDATE_BY_ID_METHOD = "/{" + ID + "}";
     public static final String DELETE_BY_ID_METHOD = "/{" + ID + "}";
-    public static final String REGISTER_PERSONAL_SAVINGS_ACCOUNT_METHOD = "/personal-savings-accounts";
-    public static final String REGISTER_VIP_PERSONAL_SAVINGS_ACCOUNT_METHOD = "/vip-personal-savings-accounts";
-    public static final String REGISTER_PERSONAL_FIXED_TERM_ACCOUNT_METHOD = "/personal-fixed-term-accounts";
-    public static final String REGISTER_PERSONAL_CHECKING_ACCOUNT_METHOD = "/personal-checking-accounts";
-    public static final String REGISTER_BUSINESS_CHECKING_ACCOUNT_METHOD = "/business-checking-accounts";
-    public static final String REGISTER_PYME_BUSINESS_CHECKING_ACCOUNT_METHOD = "/pyme-business-checking-accounts";
+    public static final String REGISTER_PERSONAL_SAVINGS_ACCOUNT_METHOD = "/personal-savings";
+    public static final String REGISTER_VIP_PERSONAL_SAVINGS_ACCOUNT_METHOD = "/vip-personal-savings";
+    public static final String REGISTER_PERSONAL_FIXED_TERM_ACCOUNT_METHOD = "/personal-fixed-term";
+    public static final String REGISTER_PERSONAL_CHECKING_ACCOUNT_METHOD = "/personal-checking";
+    public static final String REGISTER_BUSINESS_CHECKING_ACCOUNT_METHOD = "/business-checking";
+    public static final String REGISTER_PYME_BUSINESS_CHECKING_ACCOUNT_METHOD = "/pyme-business-checking";
+    public static final String REGISTER_DEBIT_CARD_METHOD = "";
+    public static final String ASSOCIATE_BANK_ACCOUNT_METHOD = "/{" + ID + "}" + "/associate";
 
     // Customer service
     public static final String CUSTOMER_SERVICE_BASE_URL = "${customerService.baseUrl}";

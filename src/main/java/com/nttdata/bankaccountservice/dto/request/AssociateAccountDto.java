@@ -3,9 +3,8 @@ package com.nttdata.bankaccountservice.dto.request;
 import lombok.Getter;
 
 @Getter
-public class AssociateDebitCardDto {
+public class AssociateAccountDto {
 
-    private String debitCardId;
     private String bankAccountId;
 
 }

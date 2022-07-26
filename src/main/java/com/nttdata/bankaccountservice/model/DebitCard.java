@@ -19,5 +19,6 @@ public class DebitCard {
     private final LocalDate expirationDate;
     private final String mainAccountId;
     private final List<String> secondaryAccountIds;
+    private final String walletId;
 
 }

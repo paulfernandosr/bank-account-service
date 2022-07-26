@@ -10,4 +10,5 @@ public class GenerateReportDto {
     private String bankAccountId;
     private LocalDate startDate;
     private LocalDate endDate;
+
 }

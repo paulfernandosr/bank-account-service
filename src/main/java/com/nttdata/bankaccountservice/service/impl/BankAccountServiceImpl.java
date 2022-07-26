@@ -6,19 +6,15 @@ import com.nttdata.bankaccountservice.exception.EntityNotFoundException;
 import com.nttdata.bankaccountservice.exception.DomainException;
 import com.nttdata.bankaccountservice.exception.DuplicateEntityException;
 import com.nttdata.bankaccountservice.model.BankAccount;
-import com.nttdata.bankaccountservice.model.DebitCard;
 import com.nttdata.bankaccountservice.repo.IBankAccountRepo;
 import com.nttdata.bankaccountservice.service.*;
 import com.nttdata.bankaccountservice.util.BankAccountMapper;
 import com.nttdata.bankaccountservice.util.Constants;
-import com.nttdata.bankaccountservice.util.DebitCardMapper;
-import io.vavr.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
 
 import java.time.LocalDate;
@@ -32,8 +28,6 @@ public class BankAccountServiceImpl implements IBankAccountService {
     private final ICustomerService customerService;
     private final ICreditService creditService;
     private final IMovementService movementService;
-
-    private final IDebitCardService debitCardService;
 
     @Override
     public Flux<BankAccountDto> getAll() {
@@ -149,22 +143,6 @@ public class BankAccountServiceImpl implements IBankAccountService {
                         customerService.getCustomerById(bankAccount.getCustomerId()),
                         this.getMovementsBetweenDates(generateReportDto).collectList()))
                 .map(this::buildReport);
-    }
-
-    @Override
-    public Mono<DebitCardDto> associateDebitCard(AssociateDebitCardDto associateDebitCardDto) {
-        return Mono.zip(this.getById(associateDebitCardDto.getBankAccountId()),
-                        debitCardService.getById(associateDebitCardDto.getDebitCardId()))
-                .map(this::addSecondaryAccount)
-                .flatMap(modifiedDebitCard -> debitCardService.updateById(modifiedDebitCard.getId(), modifiedDebitCard));
-    }
-
-    private DebitCardDto addSecondaryAccount(Tuple2<BankAccountDto, DebitCardDto> tuple) {
-        String accountId = tuple.getT1().getId();
-        DebitCardDto debitCard = tuple.getT2();
-        List<String> secondaryAccountIds = debitCard.getSecondaryAccountIds();
-        secondaryAccountIds.add(accountId);
-        return debitCard.toBuilder().secondaryAccountIds(secondaryAccountIds).build();
     }
 
     private Flux<MovementDto> getMovementsBetweenDates(GenerateReportDto generateReportDto) {
